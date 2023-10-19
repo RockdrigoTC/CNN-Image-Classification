@@ -29,10 +29,13 @@ dircount = []
 prevRoot=''
 cant=0
 num_clases = 10
+limit = 100 #Limita el número de imágenes a usar por clase
+
 
 print("leyendo imagenes de ",imgpath)
 
 for root, dirnames, filenames in os.walk(imgpath):
+    count = 0
     for filename in filenames:
         if re.search("\.(jpg|jpeg|png|bmp|tiff)$", filename):
             cant=cant+1
@@ -47,6 +50,9 @@ for root, dirnames, filenames in os.walk(imgpath):
                 directories.append(root)
                 dircount.append(cant)
                 cant=0
+            count = count+1
+        if count >= limit:
+            break
 dircount.append(cant)
 
 dircount = dircount[1:]
@@ -63,6 +69,8 @@ for cantidad in dircount:
     for i in range(cantidad):
         labels.append(indice)
     indice=indice+1
+    if indice >= limit:
+        break
 print("Cantidad etiquetas creadas: ",len(labels))
 
 deportes=[]
