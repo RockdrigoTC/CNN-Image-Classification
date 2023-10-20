@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class CNN:
     def __init__(self, num_classes, input_shape=(21, 28, 3)):
         self.num_classes = num_classes
